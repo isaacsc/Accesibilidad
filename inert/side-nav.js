@@ -6,6 +6,9 @@ class SideNav {
     this.hideButtonEl = document.querySelector('.js-menu-hide');
     this.sideNavEl = document.querySelector('.js-side-nav');
     this.sideNavContainerEl = document.querySelector('.js-side-nav-container');
+    // Control whether the container's children can be focused
+    // Set initial state to inert since the drawer is offscreen
+    this.sideNavEl.inert = true;
 
     this.showSideNav = this.showSideNav.bind(this);
     this.hideSideNav = this.hideSideNav.bind(this);
@@ -115,6 +118,7 @@ class SideNav {
   showSideNav () {
     this.sideNavEl.classList.add('side-nav--animatable');
     this.sideNavEl.classList.add('side-nav--visible');
+    this.sideNavEl.inert = false;
 
     this.transitionEndProperty = 'transform';
     // the duration of transition (make unique to distinguish transitions )
@@ -126,6 +130,7 @@ class SideNav {
   hideSideNav () {
     this.sideNavEl.classList.add('side-nav--animatable');
     this.sideNavEl.classList.remove('side-nav--visible');
+    this.sideNavEl.inert = true;
 
     this.transitionEndProperty = 'transform';
     this.transitionEndTime = 0.13;
